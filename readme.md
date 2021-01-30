@@ -10,12 +10,13 @@ node js
 ```
 ## Usage
 
-Clone the repo or download the file.
+```
+npm install -g batch-deletion-node-version
+```
+```
+npx batch_delete
+```
 
-open command prompt and run js file.
-```
-node batch_deletion.js
-```
 There are two arguments you have to pass.
 
 It is ❗important❗ to specify the file type or extension.
@@ -29,5 +30,5 @@ It is optional to specify the path, by default it will take current working dire
 ```
 ## Example
 ```
-node batch_deletion.js --filetype .txt --path your path
+npx batch_delete --filetype .txt --path your path
 ```

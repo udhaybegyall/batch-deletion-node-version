@@ -4,7 +4,7 @@
   "description": "Delete files in one go with same extension",
   "main": "src/batch_deletion.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "node",
@@ -20,5 +20,5 @@
     "type": "git",
     "url": "https://github.com/udhaybegyall/batch-deletion-node-version.git"
   },
-  "homepage": ""
+  "homepage": "https://github.com/udhaybegyall/batch-deletion-node-version"
 }
