@@ -2,12 +2,23 @@
   "name": "batch-deletion-node-version",
   "version": "1.0.1",
   "description": "Delete files in one go with same extension",
-  "main": "batch_deletion.js",
+  "main": "src/batch_deletion.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bin": "batch_deletion.js"
   },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "batch-deletion",
+    "cli"
+  ],
+  "bin": {
+    "batch_delete": "src/batch_deletion.js"
+  },
   "author": "udhaybegyall",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/udhaybegyall/batch-deletion-node-version.git"
+  },
+  "homepage": ""
 }
