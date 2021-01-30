@@ -1,0 +1,13 @@
+{
+  "name": "batch-deletion-node-version",
+  "version": "1.0.0",
+  "description": "Delete files in one go with same extension",
+  "main": "batch_deletion.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bin": "batch_deletion.js"
+  },
+  "keywords": [],
+  "author": "udhaybegyall",
+  "license": "ISC"
+}
