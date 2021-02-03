@@ -38,7 +38,11 @@ for (const doc of files) {
 
         } catch(err) {
 
-            throw err;
+            if (err.code === 'EBUSY') {
+                console.log(`${doc} is busy make sure the file is closed.`);
+            } else {
+                throw err;
+            }
         }
 
         deleted++;

@@ -14,7 +14,7 @@ node js
 npm install -g batch-deletion-node-version
 ```
 ```
-npx batch_delete
+batch_delete --filetype --path
 ```
 
 There are two arguments you have to pass.
@@ -30,5 +30,5 @@ It is optional to specify the path, by default it will take current working dire
 ```
 ## Example
 ```
-npx batch_delete --filetype .txt --path your path
+batch_delete --filetype .txt
 ```

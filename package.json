@@ -20,5 +20,8 @@
     "type": "git",
     "url": "https://github.com/udhaybegyall/batch-deletion-node-version.git"
   },
-  "homepage": "https://github.com/udhaybegyall/batch-deletion-node-version"
+  "homepage": "https://github.com/udhaybegyall/batch-deletion-node-version",
+  "dependencies": {
+    "argparse": "^2.0.1"
+  }
 }
