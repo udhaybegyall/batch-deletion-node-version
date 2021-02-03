@@ -1,6 +1,6 @@
 {
   "name": "batch-deletion-node-version",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Delete files in one go with same extension",
   "main": "src/batch_deletion.js",
   "scripts": {
