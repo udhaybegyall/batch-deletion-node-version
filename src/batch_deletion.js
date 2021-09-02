@@ -4,15 +4,15 @@ const fs = require('fs');
 const path = require('path');
 const { ArgumentParser } = require('argparse');
 
-const parser = new ArgumentParser({ description: 'Batch delete files with same extension in directory'});
+const parser = new ArgumentParser({ description: 'Batch delete files with same extension from a directory' });
 
-parser.add_argument( '--filetype', {
+parser.add_argument('--filetype', {
     type: String,
     default: null,
     help: 'Only files with the fiven type will be deleted'
 });
 
-parser.add_argument( '--path', {
+parser.add_argument('--path', {
     type: String,
     default: '.',
     help: 'Path of the directory from the files need to be deleted'
@@ -36,7 +36,7 @@ for (const doc of files) {
             fs.unlinkSync(doc);
             console.log(`Deleted file ${doc}.`);
 
-        } catch(err) {
+        } catch (err) {
 
             if (err.code === 'EBUSY') {
                 console.log(`${doc} is busy make sure the file is closed.`);
@@ -46,7 +46,7 @@ for (const doc of files) {
         }
 
         deleted++;
-        
+
     }
 }
 
