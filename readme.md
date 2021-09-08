@@ -33,4 +33,4 @@ It is optional to specify the path, by default it will take current working dire
 batch_delete --filetype .txt
 ```
 ## Python version
-[Batch Deletion]https://github.com/udhaybegyall/Batch_deletion
+[Batch Deletion](https://github.com/udhaybegyall/Batch_deletion)
