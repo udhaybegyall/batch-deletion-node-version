@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const fs = require('fs');
 const path = require('path');
 const { version } = require('../package.json');
@@ -32,6 +30,8 @@ const files = dir.filter(f => fs.statSync(f).isFile());
 const files_to_be_deleted = files.filter(f => filetype.includes(path.parse(f).ext));
 let deleted = 0;
 
+console.log(files_to_be_deleted);
+
 for (doc of files_to_be_deleted) {
 
     try {
@@ -52,4 +52,3 @@ for (doc of files_to_be_deleted) {
 }
 
 console.log(`Deleted ${deleted} of ${files.length} files.`);
-
