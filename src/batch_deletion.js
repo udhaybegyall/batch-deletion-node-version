@@ -6,13 +6,17 @@ const { ArgumentParser } = require('argparse');
 
 const parser = new ArgumentParser({ description: 'Batch delete files with same extension from a directory' });
 
-parser.add_argument('--filetype', {
+parser.add_argument('-v', '-version', {
+    action: 'version', version
+});
+
+parser.add_argument('-ft', '--filetype', {
     type: String,
     default: null,
     help: 'Only files with the fiven type will be deleted'
 });
 
-parser.add_argument('--path', {
+parser.add_argument('-p', '--path', {
     type: String,
     default: '.',
     help: 'Path of the directory from the files need to be deleted'
