@@ -21,16 +21,27 @@ There are two arguments you have to pass.
 
 It is ❗important❗ to specify the file type or extension.
 ```
---filetype
+--filetype or -ft
 ```
 
 It is optional to specify the path, by default it will take current working directory.
 ```
---path
+--path or -p
 ```
 ## Example
 ```
 batch_delete --filetype .txt
 ```
-## Python version
+***or***
+```
+batch_delete -ft .txt
+```
+
+## Multiple file type arguments (added in v2.0.0)
+You can pass multiple filetypes at sametime
+```
+batch_delete --filetype .txt .java .cpp
+```
+
+## Python version (Doesn't have multiple arguments support)
 [Batch Deletion](https://github.com/udhaybegyall/Batch_deletion)
