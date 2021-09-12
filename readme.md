@@ -43,5 +43,5 @@ You can pass multiple filetypes at sametime
 batch_delete --filetype .txt .java .cpp
 ```
 
-## Python version (Doesn't have multiple arguments support)
+## Python version
 [Batch Deletion](https://github.com/udhaybegyall/Batch_deletion)
