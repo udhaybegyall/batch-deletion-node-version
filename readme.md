@@ -37,7 +37,7 @@ batch_delete --filetype .txt
 batch_delete -ft .txt
 ```
 
-## Multiple file type arguments (added in v2.0.0)
+## Multiple file type arguments
 You can pass multiple filetypes at sametime
 ```
 batch_delete --filetype .txt .java .cpp
