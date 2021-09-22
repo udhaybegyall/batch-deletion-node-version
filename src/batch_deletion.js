@@ -5,7 +5,7 @@ const path = require('path');
 const { version } = require('../package.json');
 const { ArgumentParser } = require('argparse');
 
-const parser = new ArgumentParser({ description: 'Batch delete files with same extension from a directory' });
+const parser = new ArgumentParser({ description: 'Batch delete files with same extension or file-type from a directory' });
 
 parser.add_argument('-v', '-version', {
     action: 'version', version
@@ -32,7 +32,7 @@ const files = dir.filter(f => fs.statSync(f).isFile());
 const files_to_be_deleted = files.filter(f => filetype.includes(path.parse(f).ext));
 let deleted = 0;
 
-for (doc of files_to_be_deleted) {
+const deleteFile = ( doc ) => {
 
     try {
 
@@ -42,7 +42,7 @@ for (doc of files_to_be_deleted) {
     } catch (err) {
 
         if (err.code === 'EBUSY') {
-            console.error(`${doc} is opened make sure the file is closed.`);
+            console.error(`${doc} is opend! CLOSE THE FILE FIRST.`);
         } else {
             throw err;
         }
@@ -51,5 +51,9 @@ for (doc of files_to_be_deleted) {
     deleted++;
 }
 
-console.log(`Deleted ${deleted} of ${files.length} files.`);
+// deleting files
+for (doc of files_to_be_deleted) {
+    deleteFile(doc);
+}
 
+console.log(`\n- Deleted ${deleted} | of | ${files.length} files. -`);
