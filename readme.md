@@ -1,4 +1,5 @@
-# batch-deletion-node-version
+
+# batch-deletion
 Delete files🗃 in one go with same extension/filetype. Node version
 
 Have you encounterd a situation where you have to select multiple files📁 with same filetype/extension to delete them, I have
@@ -42,6 +43,10 @@ You can pass multiple filetypes at sametime
 ```
 batch_delete --filetype .txt .java .cpp
 ```
+##  Changelog
+
+- command change from batch_delete to batch-delete
+- some other small changes
 
 ## Python version
 [Batch Deletion](https://github.com/udhaybegyall/Batch_deletion)
