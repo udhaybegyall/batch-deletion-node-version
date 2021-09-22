@@ -15,7 +15,7 @@ node js
 npm install -g batch-deletion-node-version
 ```
 ```
-batch_delete --filetype --path
+batch-delete --filetype --path
 ```
 
 There are two arguments you have to pass.
@@ -31,17 +31,17 @@ It is optional to specify the path, by default it will take current working dire
 ```
 ## Example
 ```
-batch_delete --filetype .txt
+batch-delete --filetype .txt
 ```
 ***or***
 ```
-batch_delete -ft .txt
+batch-delete -ft .txt
 ```
 
 ## Multiple file type arguments
 You can pass multiple filetypes at sametime
 ```
-batch_delete --filetype .txt .java .cpp
+batch-delete --filetype .txt .java .cpp
 ```
 ##  Changelog
 
