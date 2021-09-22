@@ -1,4 +1,5 @@
-# batch-deletion-node-version
+
+# batch-deletion
 Delete files🗃 in one go with same extension/filetype. Node version
 
 Have you encounterd a situation where you have to select multiple files📁 with same filetype/extension to delete them, I have
@@ -21,16 +22,37 @@ There are two arguments you have to pass.
 
 It is ❗important❗ to specify the file type or extension.
 ```
---filetype
+--filetype or -ft
 ```
 
 It is optional to specify the path, by default it will take current working directory.
 ```
---path
+--path or -p
 ```
 ## Example
 ```
 batch_delete --filetype .txt
 ```
+***or***
+```
+batch_delete -ft .txt
+```
+***or***
+```
+bd -ft .txt
+```
+
+## Multiple file type arguments
+You can pass multiple filetypes at sametime
+```
+batch_delete --filetype .txt .java .cpp
+```
+##  Changelog
+
+- command change from batch_delete to batch-delete
+- command bd can be used insted of batch-delete
+- some other small changes
+
 ## Python version
-https://github.com/udhaybegyall/Batch_deletion
+[Batch Deletion](https://github.com/udhaybegyall/Batch_deletion)
+
