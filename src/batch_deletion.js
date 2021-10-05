@@ -44,7 +44,7 @@ const deleteFile = ( doc, docName, docSize ) => {
     try {
 
         fs.unlinkSync(doc);
-        console.log(`DELETED FILE - ( ${docName} ) OF SIZE | ${docSize}.`);
+        console.log(`DELETED FILE - (${docName}) OF SIZE | ${docSize}.`);
 
     } catch (err) {
 
@@ -77,4 +77,3 @@ fileCallBack
 )
 
 console.log(`\n- Deleted ${deleted} | of | ${fileLength} files. -`);
-

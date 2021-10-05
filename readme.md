@@ -103,7 +103,6 @@ Current Directory/
 │  ├─ script.js
 │  ├─ `redme.md`
 ```
-
 ```
 C:\Current Directory> batch-delete -ft md
 ```
