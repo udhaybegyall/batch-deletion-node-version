@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const path = require('path');
+const dree = require('dree');
 const { version } = require('../package.json');
 const { ArgumentParser } = require('argparse');
 
@@ -27,17 +27,24 @@ parser.add_argument('-p', '--path', {
 const args = parser.parse_args();
 const { filetype, path: dirPath } = args;
 
-const dir = fs.readdirSync(dirPath);
-const files = dir.filter(f => fs.statSync(f).isFile());
-const files_to_be_deleted = files.filter(f => filetype.includes(path.parse(f).ext));
+const options = {
+    stat: false,
+    hash: false,
+    size: true,
+    sizeInBytes: false,
+    normalize: true,
+    extensions: filetype
+}
+
+let fileLength = 0;
 let deleted = 0;
 
-const deleteFile = ( doc ) => {
+const deleteFile = ( doc, docName, docSize ) => {
 
     try {
 
         fs.unlinkSync(doc);
-        console.log(`Deleted file ${doc}.`);
+        console.log(`DELETED FILE - ( ${docName} ) OF SIZE | ${docSize}.`);
 
     } catch (err) {
 
@@ -51,10 +58,23 @@ const deleteFile = ( doc ) => {
     deleted++;
 }
 
-// deleting files
-for (doc of files_to_be_deleted) {
-    deleteFile(doc);
+const fileCallBack = ( file ) => {
+    deleteFile(file.path, file.name, file.size)
 }
 
-console.log(`\n- Deleted ${deleted} | of | ${files.length} files. -`);
+const findLength = ( file  ) => {
+    if (fs.statSync(file.path)
+        .isFile()) {
+        fileLength++;
+    }
+}
+
+const files = dree.scan(dirPath, null, findLength);
+
+const tree = dree.scan(dirPath,
+options,
+fileCallBack
+)
+
+console.log(`\n- Deleted ${deleted} | of | ${fileLength} files. -`);
 

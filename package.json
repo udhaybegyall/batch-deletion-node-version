@@ -1,6 +1,6 @@
 {
   "name": "batch-deletion-node-version",
-  "version": "2.0.1",
+  "version": "2.0.4",
   "description": "Delete files in one go with same extension name or file-type",
   "main": "src/batch_deletion.js",
   "scripts": {
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/udhaybegyall/batch-deletion-node-version",
   "dependencies": {
-    "argparse": "^2.0.1"
+    "argparse": "^2.0.1",
+    "dree": "^2.8.3"
   }
 }
