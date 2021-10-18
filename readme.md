@@ -2,8 +2,6 @@
 
 #  batch-deletion
 
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
-
 Delete files🗃 in one go with same extension/filetype. Node version
 
   
@@ -14,7 +12,7 @@ when deleting multiple .srt files from my directory.
 
   
 
-##  🤵‍Prerequisites
+##  ‍Prerequisites
 
 ```
 
@@ -90,6 +88,24 @@ batch-delete --filetype txt java cpp
 
 ```
 
+## Directory tree
+```
+batch-delete -ft txt java -dt true
+```
+***output***
+```bash
+src
+ └─> test
+     ├── file.txt
+     └─> first folder
+         ├── file.txt
+         └─> second folder
+             ├── file.txt
+             └── test.java
+
+- Deleted 4 files. -
+```
+
 ## 🚶‍♀️Walk through subdirectories.
 
 Suppose you want to delete `readme.md` from each directory inside the current directory.
@@ -109,14 +125,12 @@ C:\Current Directory> batch-delete -ft md
 *This will delete all file's with extension as .md from given directory📂 and it's subdirectories🗃.*
 
 ##  🗜️Changelog
+- [x] Performance issue --fixed
+- [x] Flag to show directory tree of located files with matching filetypes.
 
- - [x] Supports walk through subdirectories.
- - [x] No need to add dot while specifying filetype.
- - ###	Next Version
-	 -  [ ] Flag to show directory tree of located files with matching filetypes.
-
-  
 ### Previous version
+- Supports walk through subdirectories.
+- No need to add dot while specifying filetype.
 - command change from batch_delete to batch-delete
 - some other small changes
 
