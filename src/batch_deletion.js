@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const dree = require('dree');
 const { version } = require('../package.json');
 const { ArgumentParser } = require('argparse');
 
@@ -26,60 +25,74 @@ parser.add_argument('-p', '--path', {
     help: 'Path of the directory from the files need to be deleted'
 });
 
-parser.add_argument('-dt', '--tree', {
+parser.add_argument('-sd', '--subdir', {
     type: Boolean,
     default: false,
     help: 'Directory tree of located file.'
 });
 
 const args = parser.parse_args();
-const { filetype, path: dirPath, tree } = args;
+const { filetype, path: dirPath, subdir } = args;
 
-const options = {
-    stat: false,
-    hash: false,
-    size: true,
-    sizeInBytes: false,
-    normalize: true,
-    extensions: filetype
-}
-
-let dirTree;
 let deleted = 0;
 
-const deleteFile = ( doc, docName, docSize ) => {
+// create a function to delete files and make deleted count increase
 
+const deleteFile = (file) => {
+    
     try {
 
-        fs.unlinkSync(doc);
-        if (!tree) {
-            console.log(`DELETED FILE - ( ${docName} ) OF SIZE | ${docSize}.`);
-        }
+        fs.unlinkSync(file);
+        console.log(`Deleted ${file}`);
+        deleted++;
 
     } catch (err) {
-
+        
         if (err.code === 'EBUSY') {
-            console.error(`${doc} is opend! CLOSE THE FILE FIRST.`);
+
+            console.log(`${file} is opened closing file.`);
+            fs.closeSync(fs.openSync(file, 'r+'));
+            fs.unlinkSync(file);
+            console.log(`Deleted ${file}`);
+            deleted++;
+
         } else {
-            throw err;
+            console.log(err);
         }
     }
+};
 
-    deleted++;
-}
+// create a function to walk through the directory and it's sub-directories
 
-if ( tree ) {
-    dirTree = dree.parse(dirPath, options);
-    console.log(dirTree)
-}
+const walk = (dir, filetype) => {
 
-const fileCallBack = ( file ) => {
-    deleteFile(file.path, file.name, file.size)
-}
+    const files = fs.readdirSync(dir);
 
-const scan = dree.scan(dirPath,
-options,
-fileCallBack
-)
+    files.forEach(file => {
 
+        const filePath = `${dir}/${file}`;
+        const stat = fs.lstatSync(filePath);
+
+        if (stat.isDirectory()) {
+
+            if (subdir) {
+                walk(filePath, filetype);
+            }
+
+        } else {
+
+            if (filetype) {
+
+                if (filetype.includes(file.split('.').pop())) {
+                    deleteFile(filePath);
+                }
+
+            } else {
+                deleteFile(filePath);
+            }
+        }
+    });
+};
+
+walk(dirPath, filetype);
 console.log(`\n- Deleted ${deleted} files. -`);
