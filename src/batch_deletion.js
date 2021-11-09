@@ -36,8 +36,6 @@ const { filetype, path: dirPath, subdir } = args;
 
 let deleted = 0;
 
-// create a function to delete files and make deleted count increase
-
 const deleteFile = (file) => {
     
     try {
@@ -61,8 +59,6 @@ const deleteFile = (file) => {
         }
     }
 };
-
-// create a function to walk through the directory and it's sub-directories
 
 const walk = (dir, filetype) => {
 
