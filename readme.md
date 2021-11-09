@@ -88,13 +88,13 @@ batch-delete --filetype txt java cpp
 
 ```
 
-## Directory tree
-```
-batch-delete -ft txt java -dt true
-```
-***output***
+## 🚶‍♀️Walk through subdirectories.
+
+Suppose you want to delete `file.txt` from each directory inside the current directory.
+you have to pass flag -sd or --subdir as true. By default the flag is false so it wont delete files from sub-directories.
+
 ```bash
-src
+Current Directory
  └─> test
      ├── file.txt
      └─> first folder
@@ -102,31 +102,16 @@ src
          └─> second folder
              ├── file.txt
              └── test.java
-
-- Deleted 4 files. -
-```
-
-## 🚶‍♀️Walk through subdirectories.
-
-Suppose you want to delete `readme.md` from each directory inside the current directory.
-
-```bash
-Current Directory/
-├─ go chain/
-│  ├─ chain.go
-│  ├─ `readme.md`
-├─ js/
-│  ├─ script.js
-│  ├─ `redme.md`
 ```
 ```
-C:\Current Directory> batch-delete -ft md
+C:\Current Directory> batch-delete -ft md -sd true
 ```
 *This will delete all file's with extension as .md from given directory📂 and it's subdirectories🗃.*
 
-##  🗜️Changelog
-- [x] Performance issue --fixed
-- [x] Flag to show directory tree of located files with matching filetypes.
+## 🗜️Changelog
+-  [x] Performance improved.
+-  [x] flag -sd to allow deleting from sub-directories.
+-  [x] Removed flag -dt for directory tree.
 
 ### Previous version
 - Supports walk through subdirectories.
