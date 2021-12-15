@@ -87,7 +87,7 @@ const deleteFile = () => {
 }
 
 /**
- * walk through the directory recursively and delete files with the given filetype.
+ * walk through the directory recursively and search for files with the same extension or file-type.
  * 
  * @param {path of the directory} dir
  * @param {file type to be deleted} filetype
