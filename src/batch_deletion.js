@@ -45,17 +45,19 @@ let files_to_delete = [];
  */
 const print_log = (file) => {
 
-    const topnode = "┌"
-    const midnodes = "├";
-    const endnode = "└";
+        const topnode = "┌"
+        const midnodes = "├";
+        const endnode = "└";
 
-    if (files_to_delete.indexOf(file) === 0) {
-        console.log(`\n${chalk.red.bold(' Deleted:')} ${chalk.dim(topnode)} ${chalk.dim(file.split('./').pop())}`);
-    } else if (files_to_delete.indexOf(file) !== files_to_delete.length - 1) {
-        console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(midnodes)} ${chalk.dim(file.split('./').pop())}`);
-    } else {
-        console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(endnode)} ${chalk.dim(file.split('./').pop())}`);
-    }
+        if (files_to_delete.indexOf(file) === 0) {
+                console.log(`\n${chalk.red.bold(' Deleted:')} ${chalk.dim(topnode)} ${chalk.dim(file.split('./').pop())}`);
+
+        } else if (files_to_delete.indexOf(file) !== files_to_delete.length - 1) {
+                console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(midnodes)} ${chalk.dim(file.split('./').pop())}`);
+
+        } else {
+                console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(endnode)} ${chalk.dim(file.split('./').pop())}`);
+        }
 }
 
 /**
@@ -63,27 +65,27 @@ const print_log = (file) => {
  */
 const deleteFile = () => {
 
-    files_to_delete.forEach(file => {
-        try {
+        files_to_delete.forEach(file => {
+            try {
 
-            fs.unlinkSync(file);
-            print_log(file);
-            deleted++;
-
-        } catch (err) {
-
-            if (err.code === 'EBUSY') {
-                console.log(`${file} is opened closing file.`);
-                fs.closeSync(fs.openSync(file, 'r+'));
                 fs.unlinkSync(file);
                 print_log(file);
                 deleted++;
 
-            } else {
-                console.log(err);
+            } catch (err) {
+
+                if (err.code === 'EBUSY') {
+                    console.log(`${file} is opened closing file.`);
+                    fs.closeSync(fs.openSync(file, 'r+'));
+                    fs.unlinkSync(file);
+                    print_log(file);
+                    deleted++;
+
+                } else {
+                    console.log(err);
+                }
             }
-        }
-    });
+        });
 }
 
 /**
@@ -120,6 +122,10 @@ const walk = (dir, filetype) => {
         });
 }
 
+const start = new Date().getTime();
 walk(dirPath, filetype);
 deleteFile();
+const end = new Date().getTime();
+
 console.log(`\n- ${chalk.green.bold("Deleted")} ${deleted} ${chalk.dim("files of")} ${no_of_files} ${chalk.dim("files.")} -`);
+console.log(`- ${chalk.yellow.bold("Time taken")} ${end - start} ${chalk.dim("ms.")} -`);
