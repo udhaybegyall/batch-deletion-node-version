@@ -1,4 +1,4 @@
 node_modules
-src/debug.js
+.\src\debug.js
 .github
 .vscode
