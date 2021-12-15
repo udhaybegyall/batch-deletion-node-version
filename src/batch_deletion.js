@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const { version } = require('../package.json');
-const { ArgumentParser } = require('argparse');
+import fs from 'fs';
+import chalk from 'chalk';
+import { ArgumentParser } from 'argparse';
 
-const parser = new ArgumentParser({ 
+const parser = new ArgumentParser({
     description: 'Batch delete files with same extension or file-type from a directory'
 });
 
-parser.add_argument('-v', '-version', {
-    action: 'version', version
-});
+// parser.add_argument('-v', '-version', {
+//     action: 'version', version
+// });
 
 parser.add_argument('-ft', '--filetype', {
     type: String,
@@ -35,60 +35,91 @@ const args = parser.parse_args();
 const { filetype, path: dirPath, subdir } = args;
 
 let deleted = 0;
+let no_of_files = 0;
+let files_to_delete = [];
 
-const deleteFile = (file) => {
-    
-    try {
+/**
+ * log the deleted files.
+ * 
+ * @param {file to be loged} file
+ */
+const print_log = (file) => {
 
-        fs.unlinkSync(file);
-        console.log(`Deleted ${file}`);
-        deleted++;
+    const topnode = "┌"
+    const midnodes = "├";
+    const endnode = "└";
 
-    } catch (err) {
-        
-        if (err.code === 'EBUSY') {
+    if (files_to_delete.indexOf(file) === 0) {
+        console.log(`\n${chalk.red.bold(' Deleted:')} ${chalk.dim(topnode)} ${chalk.dim(file.split('./').pop())}`);
+    } else if (files_to_delete.indexOf(file) !== files_to_delete.length - 1) {
+        console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(midnodes)} ${chalk.dim(file.split('./').pop())}`);
+    } else {
+        console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(endnode)} ${chalk.dim(file.split('./').pop())}`);
+    }
+}
 
-            console.log(`${file} is opened closing file.`);
-            fs.closeSync(fs.openSync(file, 'r+'));
+/**
+ * Delete files with the provide paths in files_to_delete array.
+ */
+const deleteFile = () => {
+
+    files_to_delete.forEach(file => {
+        try {
+
             fs.unlinkSync(file);
-            console.log(`Deleted ${file}`);
+            print_log(file);
             deleted++;
 
-        } else {
-            console.log(err);
-        }
-    }
-};
+        } catch (err) {
 
-const walk = (dir, filetype) => {
-
-    const files = fs.readdirSync(dir);
-
-    files.forEach(file => {
-
-        const filePath = `${dir}/${file}`;
-        const stat = fs.lstatSync(filePath);
-
-        if (stat.isDirectory()) {
-
-            if (subdir) {
-                walk(filePath, filetype);
-            }
-
-        } else {
-
-            if (filetype) {
-
-                if (filetype.includes(file.split('.').pop())) {
-                    deleteFile(filePath);
-                }
+            if (err.code === 'EBUSY') {
+                console.log(`${file} is opened closing file.`);
+                fs.closeSync(fs.openSync(file, 'r+'));
+                fs.unlinkSync(file);
+                print_log(file);
+                deleted++;
 
             } else {
-                deleteFile(filePath);
+                console.log(err);
             }
         }
     });
-};
+}
+
+/**
+ * walk through the directory recursively and delete files with the given filetype.
+ * 
+ * @param {path of the directory} dir
+ * @param {file type to be deleted} filetype
+ */
+const walk = (dir, filetype) => {
+
+        let files = fs.readdirSync(dir);
+
+        files.forEach(file => {
+            const filePath = `${dir}/${file}`;
+            let stat = fs.statSync(filePath);
+
+            if (stat && stat.isDirectory()) {
+                if (subdir) {
+                    walk(filePath, filetype);
+                }
+
+            } else {
+
+                no_of_files++;
+                if (filetype) {
+                    if (filetype.includes(file.split('.').pop())) {
+                        files_to_delete.push(filePath);
+                    }
+
+                } else {
+                    files_to_delete.push(filePath);
+                }
+            }
+        });
+}
 
 walk(dirPath, filetype);
-console.log(`\n- Deleted ${deleted} files. -`);
+deleteFile();
+console.log(`\n- ${chalk.green.bold("Deleted")} ${deleted} ${chalk.dim("files of")} ${no_of_files} ${chalk.dim("files.")} -`);

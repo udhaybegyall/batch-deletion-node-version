@@ -109,15 +109,14 @@ C:\Current Directory> batch-delete -ft md -sd true
 *This will delete all file's with extension as .md from given directory📂 and it's subdirectories🗃.*
 
 ## 🗜️Changelog
--  [x] Performance improved.
--  [x] flag -sd to allow deleting from sub-directories.
--  [x] Removed flag -dt for directory tree.
+-  [x] Visual changes.
+-  [x] few other things.
+
 
 ### Previous version
-- Supports walk through subdirectories.
-- No need to add dot while specifying filetype.
-- command change from batch_delete to batch-delete
-- some other small changes
+- Performance improved.
+- flag -sd to allow deleting from sub-directories.
+- Removed flag -dt for directory tree.
 
   
  ## Any suggestions or issues
