@@ -110,6 +110,7 @@ C:\Current Directory> batch-delete -ft md -sd true
 
 ## 🗜️Changelog
 -  [x] Visual changes.
+-  [x] Logs time taken.
 -  [x] few other things.
 
 
