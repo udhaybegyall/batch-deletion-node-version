@@ -92,6 +92,23 @@ C:\Current Directory> batch-delete -ft md -sd true
 ```
 *This will delete all file's with extension as .md from given directory📂 and it's subdirectories🗃.*
 
+## Command-line Options
+```
+FLAGS:
+    -ft, --filetype               Type/extension of the file.
+    -p, --path                    Diretory link (by default current directory)
+    -sd, --subdir                 Check's for the files in subdirectories.
+    --------------------------------------------------------------------------
+FLAG OPTIONS:
+    -ft [Multiple fileTypes]      Accepts multiple filetypes.
+    -p  [Dir path]                Accepts single directory path.
+    -sd [boolean]                 Accepts true/false (by default false).
+    --------------------------------------------------------------------------
+OPTIONAL FLAGS
+    -p, --path
+    -sd --subdir
+```
+
 ## 🗜️Changelog
 -  [x] Visual changes.
 -  [x] Logs time taken.
