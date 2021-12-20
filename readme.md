@@ -82,7 +82,7 @@ Current Directory
              └── test.java
 ```
 ```
-C:\Current Directory> batch-delete -ft md -sd true
+C:\Current Directory> batch-delete -sd -ft md
 ```
 *This will delete all file's with extension as .md from given directory📂 and it's subdirectories🗃.*
 
@@ -96,7 +96,6 @@ FLAGS:
 FLAG OPTIONS:
     -ft [Multiple fileTypes]      Accepts multiple filetypes.
     -p  [Dir path]                Accepts single directory path.
-    -sd [boolean]                 Accepts true/false (by default false).
     --------------------------------------------------------------------------
 OPTIONAL FLAGS
     -p, --path
@@ -106,6 +105,7 @@ OPTIONAL FLAGS
 ## 🗜️Changelog
 -  [x] Visual changes.
 -  [x] Logs time taken.
+-  [x] No need to pass true as an option to -sd flag.
 -  [x] few other things.
 
 
