@@ -30,12 +30,6 @@ node js
 > batch-delete --filetype --path
 ```
 
-  
-
-There are two arguments you have to pass.
-
-  
-
 It is ❗important❗ to specify the file type or extension.
 
 ```
@@ -69,7 +63,7 @@ It is optional to specify the path, by default it will take current working dire
 You can pass multiple filetypes at sametime
 
 ```
-> batch-delete --filetype txt java cpp
+> batch-delete -ft txt java cpp
 ```
 
 ## 🚶‍♀️Walk through subdirectories.
@@ -119,7 +113,3 @@ OPTIONAL FLAGS
 - Performance improved.
 - flag -sd to allow deleting from sub-directories.
 - Removed flag -dt for directory tree.
-
-  
- ## Any suggestions or issues
- [![github](https://img.shields.io/badge/github-1DA1F2?style=for-the-badge&logo=github&logoColor=black)](https://github.com/udhaybegyall/batch-deletion-node-version/issues)
