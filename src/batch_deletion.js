@@ -26,9 +26,8 @@ parser.add_argument('-p', '--path', {
 });
 
 parser.add_argument('-sd', '--subdir', {
-    type: Boolean,
-    default: false,
-    help: 'Directory tree of located file.'
+    action: 'store_true',
+    help: 'Walk through subdirectories'
 });
 
 const args = parser.parse_args();
