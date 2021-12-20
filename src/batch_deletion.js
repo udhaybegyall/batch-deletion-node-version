@@ -43,20 +43,15 @@ let files_to_delete = [];
  * @param {file to be loged} file
  */
 const print_log = (file) => {
+    const topnode  =  "┌";
+    const midnodes =  "├";
+    const endnode  =  "└";
 
-        const topnode = "┌"
-        const midnodes = "├";
-        const endnode = "└";
-
-        if (files_to_delete.indexOf(file) === 0) {
-                console.log(`\n${chalk.red.bold(' Deleted:')} ${chalk.dim(topnode)} ${chalk.dim(file.split('./').pop())}`);
-
-        } else if (files_to_delete.indexOf(file) !== files_to_delete.length - 1) {
-                console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(midnodes)} ${chalk.dim(file.split('./').pop())}`);
-
-        } else {
-                console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(endnode)} ${chalk.dim(file.split('./').pop())}`);
-        }
+    files_to_delete.indexOf(file) === 0
+    ? console.log(`\n${chalk.red.bold(' Deleted:')} ${chalk.dim(topnode)} ${chalk.dim(file.split('./').pop())}`)
+    : files_to_delete.indexOf(file) !== files_to_delete.length - 1
+    ? console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(midnodes)} ${chalk.dim(file.split('./').pop())}`)
+    : console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(endnode)} ${chalk.dim(file.split('./').pop())}`);
 }
 
 /**
