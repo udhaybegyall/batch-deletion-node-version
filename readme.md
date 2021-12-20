@@ -15,9 +15,7 @@ when deleting multiple .srt files from my directory.
 ##  ‍Prerequisites
 
 ```
-
 node js
-
 ```
 
 ##  🔮Usage
@@ -25,15 +23,11 @@ node js
   
 
 ```
-
-npm install -g batch-deletion-node-version
-
+> npm install -g batch-deletion-node-version
 ```
 
 ```
-
-batch-delete --filetype --path
-
+> batch-delete --filetype --path
 ```
 
   
@@ -45,9 +39,7 @@ There are two arguments you have to pass.
 It is ❗important❗ to specify the file type or extension.
 
 ```
-
 --filetype or -ft
-
 ```
 
   
@@ -55,25 +47,19 @@ It is ❗important❗ to specify the file type or extension.
 It is optional to specify the path, by default it will take current working directory.
 
 ```
-
 --path or -p
-
 ```
 
 ##  🪜Example
 
 ```
-
-batch-delete --filetype txt
-
+> batch-delete --filetype txt
 ```
 
 ***or***
 
 ```
-
-batch-delete -ft txt
-
+> batch-delete -ft txt
 ```
 
   
@@ -83,9 +69,7 @@ batch-delete -ft txt
 You can pass multiple filetypes at sametime
 
 ```
-
-batch-delete --filetype txt java cpp
-
+> batch-delete --filetype txt java cpp
 ```
 
 ## 🚶‍♀️Walk through subdirectories.
