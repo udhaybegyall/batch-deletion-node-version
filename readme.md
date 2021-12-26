@@ -18,7 +18,7 @@ when deleting multiple .srt files from my directory.
 node js
 ```
 
-##  🔮Usage
+##  🔮 Usage
 
   
 
@@ -44,7 +44,8 @@ It is optional to specify the path, by default it will take current working dire
 --path or -p
 ```
 
-##  🪜Example
+
+##  🪜 Example
 
 ```
 > batch-delete --filetype txt
@@ -56,9 +57,9 @@ It is optional to specify the path, by default it will take current working dire
 > batch-delete -ft txt
 ```
 
-  
 
-##  ✖️Multiple file type arguments
+
+##  ✖️ Multiple file type arguments
 
 You can pass multiple filetypes at sametime
 
@@ -66,7 +67,8 @@ You can pass multiple filetypes at sametime
 > batch-delete -ft txt java cpp
 ```
 
-## 🚶‍♀️Walk through subdirectories.
+
+## 🚶‍♀️ Walk through subdirectories.
 
 Suppose you want to delete `file.txt` from each directory inside the current directory.
 you have to pass flag -sd or --subdir as true. By default the flag is false so it wont delete files from sub-directories.
@@ -102,7 +104,8 @@ OPTIONAL FLAGS
     -sd --subdir
 ```
 
-## 🗜️Changelog
+
+## 🗜️ Changelog
 -  [x] Visual changes.
 -  [x] Logs time taken.
 -  [x] No need to pass true as an option to -sd flag.
