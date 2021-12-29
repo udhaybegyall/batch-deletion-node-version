@@ -43,15 +43,15 @@ let files_to_delete = [];
  * @param {file to be loged} file
  */
 const print_log = (file) => {
-    const topnode  =  "┌";
-    const midnodes =  "├";
-    const endnode  =  "└";
+    const topnode = "┌";
+    const midnodes = "├";
+    const endnode = "└";
 
     files_to_delete.indexOf(file) === 0
-    ? console.log(`\n${chalk.red.bold(' Deleted:')} ${chalk.dim(topnode)} ${chalk.dim(file.split('./').pop())}`)
-    : files_to_delete.indexOf(file) !== files_to_delete.length - 1
-    ? console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(midnodes)} ${chalk.dim(file.split('./').pop())}`)
-    : console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(endnode)} ${chalk.dim(file.split('./').pop())}`);
+        ? console.log(`\n${chalk.red.bold(' Deleted:')} ${chalk.dim(topnode)} ${chalk.dim(file.split('./').pop())}`)
+        : files_to_delete.indexOf(file) !== files_to_delete.length - 1
+            ? console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(midnodes)} ${chalk.dim(file.split('./').pop())}`)
+            : console.log(`${chalk.red.bold(' Deleted:')} ${chalk.dim(endnode)} ${chalk.dim(file.split('./').pop())}`);
 }
 
 /**
@@ -59,27 +59,27 @@ const print_log = (file) => {
  */
 const deleteFile = () => {
 
-        files_to_delete.forEach(file => {
-            try {
+    files_to_delete.forEach(file => {
+        try {
 
+            fs.unlinkSync(file);
+            print_log(file);
+            deleted++;
+
+        } catch (err) {
+
+            if (err.code === 'EBUSY') {
+                console.log(`${file} is opened closing file.`);
+                fs.closeSync(fs.openSync(file, 'r+'));
                 fs.unlinkSync(file);
                 print_log(file);
                 deleted++;
 
-            } catch (err) {
-
-                if (err.code === 'EBUSY') {
-                    console.log(`${file} is opened closing file.`);
-                    fs.closeSync(fs.openSync(file, 'r+'));
-                    fs.unlinkSync(file);
-                    print_log(file);
-                    deleted++;
-
-                } else {
-                    console.log(err);
-                }
+            } else {
+                console.log(err);
             }
-        });
+        }
+    });
 }
 
 /**
@@ -90,30 +90,30 @@ const deleteFile = () => {
  */
 const walk = (dir, filetype) => {
 
-        let files = fs.readdirSync(dir);
+    let files = fs.readdirSync(dir);
 
-        files.forEach(file => {
-            const filePath = `${dir}/${file}`;
-            let stat = fs.statSync(filePath);
+    files.forEach(file => {
+        const filePath = `${dir}/${file}`;
+        let stat = fs.statSync(filePath);
 
-            if (stat && stat.isDirectory()) {
-                if (subdir) {
-                    walk(filePath, filetype);
+        if (stat && stat.isDirectory()) {
+            if (subdir) {
+                walk(filePath, filetype);
+            }
+
+        } else {
+
+            no_of_files++;
+            if (filetype) {
+                if (filetype.includes(file.split('.').pop())) {
+                    files_to_delete.push(filePath);
                 }
 
             } else {
-
-                no_of_files++;
-                if (filetype) {
-                    if (filetype.includes(file.split('.').pop())) {
-                        files_to_delete.push(filePath);
-                    }
-
-                } else {
-                    files_to_delete.push(filePath);
-                }
+                files_to_delete.push(filePath);
             }
-        });
+        }
+    });
 }
 
 const start = new Date().getTime();
@@ -122,4 +122,4 @@ deleteFile();
 const end = new Date().getTime();
 
 console.log(`\n- ${chalk.green.bold("Deleted")} ${deleted} ${chalk.dim("files of")} ${no_of_files} ${chalk.dim("files.")} -`);
-console.log(`- ${chalk.yellow.bold("Time taken")} ${end - start} ${chalk.dim("ms.")} -`);
+console.log(`- ${chalk.yellow.bold("Time taken:")} ${end - start} ${chalk.dim("ms.")} -`);
