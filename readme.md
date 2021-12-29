@@ -29,7 +29,7 @@ node js
 ```
 
 ```
-> batch-delete --filetype --path
+> bd --filetype --path
 ```
 
 It is ❗important❗ to specify the file type or extension.
@@ -46,29 +46,31 @@ It is optional to specify the path, by default it will take current working dire
 --path or -p
 ```
 
+<br>
 
 ##  🪜 Example
 
 ```
-> batch-delete --filetype txt
+> bd --filetype txt
 ```
 
 ***or***
 
 ```
-> batch-delete -ft txt
+> bd -ft txt
 ```
 
-
+<br>
 
 ##  ✖️ Multiple file type arguments
 
 You can pass multiple filetypes at sametime
 
 ```
-> batch-delete -ft txt java cpp
+> bd -ft txt java cpp
 ```
 
+<br>
 
 ## 🚶‍♀️ Walk through subdirectories.
 
@@ -86,9 +88,11 @@ Current Directory
              └── test.java
 ```
 ```
-C:\Current Directory> batch-delete -sd -ft md
+C:\Current Directory> bd -sd -ft md
 ```
 *This will delete all file's with extension as .md from given directory📂 and it's subdirectories🗃.*
+
+<br>
 
 ## Command-line Options
 ```
