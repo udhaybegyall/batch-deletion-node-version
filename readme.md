@@ -112,13 +112,17 @@ OPTIONAL FLAGS
 
 
 ## 🗜️ Changelog
--  [x] Visual changes.
--  [x] Logs time taken.
+-  [x] Command change from batch-delete to bd.
 -  [x] No need to pass true as an option to -sd flag.
 -  [x] few other things.
 
 
 ### Previous version
+- Visual changes.
+- Logs time taken.
+- No need to pass true as an option to -sd flag.
+- few other things.
+-----------------------------------------------------
 - Performance improved.
 - flag -sd to allow deleting from sub-directories.
 - Removed flag -dt for directory tree.
