@@ -120,7 +120,6 @@ OPTIONAL FLAGS
 ### Previous version
 - Visual changes.
 - Logs time taken.
-- No need to pass true as an option to -sd flag.
 - few other things.
 -----------------------------------------------------
 - Performance improved.
